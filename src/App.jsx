@@ -65,6 +65,7 @@ function App() {
   const [isOn, setIsOn] = useState(true);
   return (
     <div
+      id="drum-machine"
       style={{
         background: "#8d8d8d",
         position: "absolute",
@@ -122,17 +123,12 @@ function App() {
               window.addEventListener("keydown", handleKeyDown);
               return () => window.removeEventListener("keydown", handleKeyDown);
             }, [isOn, volume]);
-            // const togglePlayPause = () => {
-            //   if (!isOn) return;
-            //   setAction(item.id);
-            //   refAudio.current.volume = volume / 100;
-            //   refAudio.current.play().catch((e) => {
-            //     console.log("Error playing audio:", e);
-            //   });
-            // };
+
             return (
               <div
                 key={i}
+                className="drum-pad"
+                id={item.id}
                 ref={refWrap}
                 onClick={playSound}
                 style={{
@@ -195,7 +191,10 @@ function App() {
                 setAction("Volume: " + e.target.value);
               }}
             />
-            <div style={{ width: 140, height: 30, background: "white" }}>
+            <div
+              id="display"
+              style={{ width: 140, height: 30, background: "white" }}
+            >
               {isOn ? action : "OFF"}
             </div>
           </div>
